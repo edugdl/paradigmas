@@ -89,16 +89,16 @@ matriz_comparacao = [[-1, 1, 1, -1], [-1, 1, 0, 0], [-1, -1, 0, 0], [-1, 0, 1, -
 solucao = [0 for _ in range(81)]
 inicio = time.time()
 possibilidades = matriz_possibilidades(matriz_comparacao)
-print(possibilidades[0])
-for t in possibilidades[0]:
-    print(t)
-    if resolve(t,0,solucao, matriz_comparacao, possibilidades): break
+print(possibilidades)
+# for t in possibilidades[0]:
+#     print(t)
+#     if resolve(t,0,solucao, matriz_comparacao, possibilidades): break
 fim = time.time()
 tempo_de_execucao = fim - inicio
 print(f"O código levou {tempo_de_execucao} segundos para ser executado.")
 
-for i in range(len(solucao)):
-    if not i % 27 and i: print("\n\n")
-    elif not i % 9: print()
-    elif not i % 3: print("   ", end="")
-    print(solucao[i], end=" ")
+# for i in range(len(solucao)):
+#     if not i % 27 and i: print("\n\n")
+#     elif not i % 9: print()
+#     elif not i % 3: print("   ", end="")
+#     print(solucao[i], end=" ")

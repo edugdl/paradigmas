@@ -19,7 +19,7 @@ for :: Int -> Int -> [Int] -> [[Int]] -> Maybe [Int]
 for indice posicao solucao possibilidades
     | indice < 0 = Nothing
     | otherwise = do
-        let tentativa_atual = resolve ((possibilidades!!posicao)!!indice) posicao solucao possibilidades
+        let tentativa_atual = resolve ((possibilidades !! posicao) !! indice) posicao solucao possibilidades
         case tentativa_atual of
             Just tentativa -> Just tentativa
             Nothing -> for (indice - 1) posicao solucao possibilidades
@@ -28,6 +28,8 @@ for indice posicao solucao possibilidades
 resolve :: Int -> Int -> [Int] -> [[Int]] -> Maybe [Int]
 resolve elemento posicao solucao possibilidades
     | elem elemento (obtemLinha (posicao `div` 9) solucao) = Nothing
+    | elem elemento (obtemColuna (posicao `mod` 9) solucao) = Nothing
+    | elem elemento (obtemRegiao (posicao `div` 27) ((posicao `mod` 9) `div` 3) solucao) = Nothing
     | not (compara elemento posicao solucao) = Nothing
     | posicao == 80 = Just (trocaElemento 80 elemento solucao)
     | otherwise =
@@ -69,9 +71,7 @@ obtemColuna coluna matriz =
 
 obtemRegiao :: Int -> Int -> [Int] -> [Int]
 obtemRegiao x_regiao y_regiao matriz =
-    [[|j <- [0..2]]
-    | i <- [0..2]
-    ]
+    [matriz!!(((x_regiao*27)+(i*9))+(y_regiao*3)+j)|i<-[0..2],j<-[0..2]]
 
 limite :: Int -> [Int] -> Int -> [Int]
 limite posicao visitados lim
@@ -83,7 +83,7 @@ limite posicao visitados lim
             direita = posicao + 1
             abaixo = posicao + 9
             esquerda = posicao - 1
-            resAcima = if (matrizComparacao !! posicao !! 0 == lim) then limite acima visitados lim else 0 : novos_visitados
+            resAcima = if (matrizComparacao !! posicao !! 0 == lim) then limite acima novos_visitados lim else 0 : novos_visitados
             resDireita = if (matrizComparacao !! posicao !! 1 == lim) then limite direita (drop 1 resAcima) lim else 0 : (drop 1 resAcima) 
             resAbaixo = if (matrizComparacao !! posicao !! 2 == lim) then limite abaixo (drop 1 resDireita) lim else 0 : (drop 1 resDireita)
             resEsquerda = if (matrizComparacao !! posicao !! 3 == lim) then limite esquerda (drop 1 resAbaixo) lim else 0 : (drop 1 resAbaixo)
