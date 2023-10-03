@@ -4,10 +4,9 @@ import time
 def matriz_possibilidades(comparacao):
     """
     Função que calcula a matriz de possibilidades para cada casa dado a matriz de comparação.
-    Faz uma busca por pronfundidade para cada sinal (maior e menor), delimitando as possibilidades.
     
     @param: matriz comparação           Matriz de 81 listas de 4 elementos, que representa os sinais de maior e menor
-    @return: matriz de possibilidades   Matriz de 81 listas de 1 até 7 elementos, que representa os valores possíveis de inserção
+    @return: matriz possibilidades      Matriz de 81 listas de 1 até 7 elementos, que representa os valores possíveis de inserção
     """
     matriz = []
     for i in range(81):
@@ -26,7 +25,7 @@ def resolve(elemento, posicao, solucao, comparacao, possibilidades):
     @param: posição                     Posição em que o elemento será posicionado
     @param: matriz solução              Matriz de 81 elementos que simula o sudoku, representando a tentativa de solução atual
     @param: matriz comparação           Matriz de 81 listas de 4 elementos, que representa os sinais de maior e menor
-    @paran: matriz de possibilidades    Matriz de 81 listas de 1 até 7 elementos, que representa os valores possíveis de inserção
+    @paran: matriz possibilidades       Matriz de 81 listas de 1 até 7 elementos, que representa os valores possíveis de inserção
     @return: término                    Se a solução atual é aceita (chegou ao fim) ou é impossível continuar a partir do valor atual 
     """
     if repete_linha(elemento, posicao, solucao):
@@ -54,7 +53,7 @@ def compara(elemento, posicao, matriz, comparacao):
     @param: elemento                    Valor do elemento que será inserido no sudoku
     @param: posição                     Posição em que o elemento será posicionado
     @param: matriz                      A matriz de 81 elementos, que simula o sudoku
-    @param: matriz de comparação        Matriz de 81 listas de 4 elementos, que representa os sinais de maior e menor
+    @param: matriz comparação           Matriz de 81 listas de 4 elementos, que representa os sinais de maior e menor
     @return: condição                   Se é possível inserir o elemento em dada posição
     """
     if comparacao[posicao][0] == 1:
@@ -136,7 +135,7 @@ def limite(posicao, comparacao, visitados, comp):
     Assim, verificamos os limites superiores e inferiores de uma célula no sudoku, reduzindo a complexidade do algoritmo.
         
     @param: posição                     Posição em que o elemento será posicionado
-    @param: matriz de comparação        Matriz de 81 listas de 4 elementos, que representa os sinais de maior e menor
+    @param: matriz comparação           Matriz de 81 listas de 4 elementos, que representa os sinais de maior e menor
     @param: elementos visitados         Lista que contém todos os elementos já visitados na busca em profundidade
     @param: comparação da busca         Admite apenas duas entrada = 0 ou 1, pois representa qual busca deseja se fazer, pelo símbolo '<' ou '>'
     @return: total                      Quantidade de células do sudokus visitadas a partir do elemento de comparação
@@ -183,10 +182,10 @@ def mostrar_matriz(matriz):
 def main():
     """
     - Função que integra todas as demais.\n
-    - Inicia definindo a matriz que simula o sudoku com 0 em suas 81 posições.\n
-    - Define-se a matriz de comparação, simulando as comparações do Vergleich.\n
-    - Cria-se a matriz de possibilidades de inserção nas posições do sudoku.\n
-    - O sudoku é resolvido, e calcula-se seu tempo de execução.\n
+    - Inicia definindo a matriz que simula o sudoku com 0 em suas 81 posições\n
+    - Define-se a matriz de comparação, simulando as comparações do Vergleich\n
+    - Cria-se a matriz de possibilidades de inserção nas posições do sudoku\n
+    - O sudoku é resolvido, e calcula-se seu tempo de execução\n
     - O resultado é mostrado na tela, juntamente com o tempo total 
     """
     solucao = [0 for _ in range(81)]
