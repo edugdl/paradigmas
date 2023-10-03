@@ -1,5 +1,3 @@
-import Data.List
-import Data.List.Split
 import Data.Maybe
 import Debug.Trace
 
@@ -105,7 +103,8 @@ mostrarSudokuFormatado solucao = concat [formatarLinha i | i <- [0..80]]
 main :: IO ()
 main = do
     let solucao = replicate 81 0
-    let resultado = for (length (matrizPossibilidades !! 0)-1) 0 solucao matrizPossibilidades
+    let possibilidades = matrizPossibilidades
+    let resultado = for (length (possibilidades !! 0)-1) 0 solucao possibilidades
     case resultado of
         Just res -> putStrLn (mostrarSudokuFormatado res)
         Nothing -> putStrLn "Não há solução."
